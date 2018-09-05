@@ -3,7 +3,9 @@ import Chatkit from '@pusher/chatkit';
 import ChatWindow from './ChatWindow';
 import UsersList from './UsersList';
 import SendMessageForm from './SendMessageForm';
-import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
 
 const styles = {
@@ -13,8 +15,12 @@ const styles = {
         overflowY: 'auto',
         border: '1px solid #ddd',
         padding: '12px'
+    },
+    button : {
+        background: '#2196f3',
+        color: '#fff'
     }
-}
+  };
 
 class ChattingSection extends Component {
     constructor (props) {
@@ -70,11 +76,16 @@ class ChattingSection extends Component {
         .catch(error => console.error('error', error))
     }
 
+    createRoom(e) {
+        e.preventDefault();
+        alert('Functionality under development');
+    }
+
     render() {
         return (
             <React.Fragment>
                 <Grid container spacing={24}>
-                    <Grid item xs={12} sm={8}>
+                    <Grid item xs={8}>
                         <div  ref='scroll' style={styles.chatWindow}>
                             <ChatWindow
                                 messages={this.state.messages}
@@ -85,10 +96,17 @@ class ChattingSection extends Component {
                             />
 
                     </Grid>
-                    <UsersList
-                        currentUser={this.state.currentUser}
-                        users={this.state.currentRoom.users}
-                    />
+                    <Grid item xs={4}>
+                        <Button style={styles.button} onClick={this.createRoom.bind(this)} variant="extendedFab" aria-label="Create Room">
+                            <AddIcon />
+                            Create Room
+                        </Button>
+
+                        <UsersList
+                            currentUser={this.state.currentUser}
+                            users={this.state.currentRoom.users}
+                        />
+                    </Grid>
                 </Grid>
             </React.Fragment>
         )
