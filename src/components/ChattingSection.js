@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Chatkit from '@pusher/chatkit';
 import ChatWindow from './ChatWindow';
+import UsersList from './UsersList';
 import SendMessageForm from './SendMessageForm';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -45,8 +46,7 @@ class ChattingSection extends Component {
             })
         })
 
-        chatManager
-        .connect()
+        chatManager.connect()
         .then(currentUser => {
           this.setState({ currentUser })
           return currentUser.subscribeToRoom({
@@ -66,13 +66,8 @@ class ChattingSection extends Component {
         })
         .then(currentRoom => {
           this.setState({ currentRoom })
-          this.scrollToBottom()
         })
         .catch(error => console.error('error', error))
-    }
-
-    scrollToBottom() {
-        
     }
 
     render() {
@@ -90,6 +85,10 @@ class ChattingSection extends Component {
                             />
 
                     </Grid>
+                    <UsersList
+                        currentUser={this.state.currentUser}
+                        users={this.state.currentRoom.users}
+                    />
                 </Grid>
             </React.Fragment>
         )

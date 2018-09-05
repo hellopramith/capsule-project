@@ -12,6 +12,17 @@ function CapsuleApp(currState, action) {
         username: action.username
       })
 
+    // case 'GET_ROOM':
+    //   return Object.assign({}, {
+    //     username: action.username
+    //   })
+
+    // case 'SET_ROOM':
+    //   return Object.assign({}, {
+    //     screen: 'ChattingSection',
+    //     username: action.username
+    //   })
+
     default:
       return currState;
   }
