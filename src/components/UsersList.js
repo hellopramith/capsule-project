@@ -8,13 +8,13 @@ class UsersList extends Component {
         {this.props.users.map((user, index) => {
           if (user.id === this.props.currentUser.id) {
             return (
-              <li>
-              {user.name}
+              <li key={user.id}>
+              <strong>{user.name}</strong>
               </li>
             )
           }
           return (
-            <li>
+            <li key={user.id}>
              {user.name}
             </li>
           )

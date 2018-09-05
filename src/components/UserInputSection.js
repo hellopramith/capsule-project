@@ -33,7 +33,7 @@ class UserInputSection extends Component {
     render() {
         return (
             <section style={styles.section}>
-                <form>
+                <form onSubmit={this.onSubmit.bind(this)} >
                     <Typography variant="title" color="inherit">capsule-chat</Typography>
                     <TextField
                         id="name"
