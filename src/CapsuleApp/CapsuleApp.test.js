@@ -1,7 +1,6 @@
 const { createStore } = require('redux');
-const TrelloApp = require('.');
+const CapsuleApp = require('.');
 const should = require('chai').should();
-const deepFreeze = require('deep-freeze');
  
 describe('CapsuleApp unit testing', function() {
  
