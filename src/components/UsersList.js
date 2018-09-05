@@ -9,8 +9,12 @@ const styles = {
     cursor: 'default'
   },
   highlighted : {
-    background: '#ddd',
+    background: '#dff1ff',
     cursor: 'default'
+  },
+  userList : {
+      height: '356px',
+      overflowY: 'auto'
   }
 }
 
@@ -18,7 +22,7 @@ class UsersList extends Component {
 
   render() {
     if (this.props.users) {
-      return  <List component="nav">
+      return  <List component="nav"  style={styles.userList}>
         {this.props.users.map((user, index) => {
           if (user.id === this.props.currentUser.id) {
             return (

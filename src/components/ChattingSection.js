@@ -3,9 +3,10 @@ import Chatkit from '@pusher/chatkit';
 import ChatWindow from './ChatWindow';
 import UsersList from './UsersList';
 import SendMessageForm from './SendMessageForm';
-import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import Chat from '@material-ui/icons/Chat';
 import Grid from '@material-ui/core/Grid';
 
 const styles = {
@@ -19,6 +20,11 @@ const styles = {
     button : {
         background: '#2196f3',
         color: '#fff'
+    },
+    logo : {
+        fontSize: '50px',
+        color: '#2196f3',
+        margin: '0 0 60px'
     }
   };
 
@@ -97,6 +103,7 @@ class ChattingSection extends Component {
 
                     </Grid>
                     <Grid item xs={4}>
+                        <Typography variant="title" style={styles.logo} color="inherit">capsule-chat <Chat style={styles.logo}/></Typography>
                         <Button style={styles.button} onClick={this.createRoom.bind(this)} variant="extendedFab" aria-label="Create Room">
                             <AddIcon />
                             Create Room

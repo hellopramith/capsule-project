@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 
 const styles = {
     paper : {
-        background: '#e6efdf',
+        background: '#dff1ff',
         padding: '10px'
     },
     even : {
