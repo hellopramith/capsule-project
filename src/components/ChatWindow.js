@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = {
     paper : {
-        background: '#dff1ff',
+        background: '#fff',
         padding: '10px'
     },
     even : {
         marginRight: '10px',
         borderBottom: '1px solid #ddd',
         listStyle: 'none',
-        
         marginBottom: '10px'
     },
     odd : {
@@ -23,14 +23,20 @@ const styles = {
         fontStyle: 'italic'
     },
     message : {
-        fontSize: '12px',
-        padding: '10px 0 0'
+        fontSize: '12px'
+    },
+    blue : {
+        color: '#2196f3'
+    },
+    loader : {
+        paddingTop: '230px',
+        textAlign: 'center'
     }
 }
 
 class ChatWindow extends Component {
     render() {
-
+        if (this.props.messages.length) {
         return (
             <div>
                 <ul>
@@ -45,6 +51,9 @@ class ChatWindow extends Component {
                 </ul> 
             </div>
         )
+        } else {
+            return <div style={styles.loader}><CircularProgress style={styles.blue} /></div>
+        }
     }
 }
 

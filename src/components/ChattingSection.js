@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = {
     chatWindow : {
-        background: '#eee',
+        background: '#dff1ff',
         height: '515px',
         overflowY: 'auto',
         border: '1px solid #ddd',
@@ -19,7 +19,8 @@ const styles = {
     },
     button : {
         background: '#2196f3',
-        color: '#fff'
+        color: '#fff',
+        marginBottom: '12px'
     },
     logo : {
         fontSize: '50px',

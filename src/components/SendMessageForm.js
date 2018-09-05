@@ -6,7 +6,8 @@ const styles = {
         padding: '20px 10px 40px',
         borderRadius: '0 0 25px 0',
         width: '100%',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        outline: 'none'
     }
 }
 
