@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Chatkit from '@pusher/chatkit';
 import ChatWindow from './ChatWindow';
 import UsersList from './UsersList';
 import SendMessageForm from './SendMessageForm';
@@ -8,6 +7,9 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Chat from '@material-ui/icons/Chat';
 import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import Chatkit from '@pusher/chatkit';
 
 const styles = {
     chatWindow : {
@@ -30,14 +32,20 @@ const styles = {
   };
 
 class ChattingSection extends Component {
+    static propTypes = {
+        dispatch: PropTypes.func.isRequired,
+        currentUser: PropTypes.object,
+        currentRoom:  PropTypes.object,
+        messages: PropTypes.array
+      };
+
     constructor (props) {
         super();
 
         this.state = {
             currentUser: {},
             currentRoom: {},
-            messages: [],
-            usersWhoAreTyping: []
+            messages: []
         }
 
         this.sendMessage = this.sendMessage.bind(this);
@@ -51,6 +59,12 @@ class ChattingSection extends Component {
     }
 
     componentDidMount () {
+        // console.log(0)
+        // this.props.dispatch({
+        //     type: 'GET_CHAT',
+        //     userId: this.props.username
+        // });
+        
         const chatManager = new Chatkit.ChatManager({
             instanceLocator: 'v1:us1:4b9830d2-44d5-464b-8a84-225ed473b5ba',
             userId: this.props.username,
@@ -89,13 +103,17 @@ class ChattingSection extends Component {
     }
 
     render() {
+        const currentUser = this.props.currentUser || this.state.currentUser;
+        const users = currentUser ? currentUser.users : [];
+        const messages = this.props.messages || this.state.messages;
         return (
             <React.Fragment>
                 <Grid container spacing={24}>
+
                     <Grid item xs={8}>
                         <div  ref='scroll' style={styles.chatWindow}>
                             <ChatWindow
-                                messages={this.state.messages}
+                                messages={messages}
                             />
                         </div>
                             <SendMessageForm 
@@ -111,8 +129,8 @@ class ChattingSection extends Component {
                         </Button>
 
                         <UsersList
-                            currentUser={this.state.currentUser}
-                            users={this.state.currentRoom.users}
+                            currentUser={currentUser}
+                            users={users}
                         />
                     </Grid>
                 </Grid>
@@ -121,4 +139,10 @@ class ChattingSection extends Component {
     }
 }
 
-export default ChattingSection;
+const mapStateToProps = (state) => ({
+    messages: state.messages,
+    currentRoom: state.currentRoom,
+    currentUser: state.currentUser
+});
+
+export default  connect(mapStateToProps) (ChattingSection);
